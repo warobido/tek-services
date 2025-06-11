@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Production Team Accomplishments - Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light gray background */
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #1a202c; /* Darker text for titles */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .year-header {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #2c5282; /* Blue for year headers */
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        .sub-section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4a5568; /* Gray for sub-section titles */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        .sub-section-title svg {
+            margin-right: 0.5rem;
+            color: #63b3ed; /* Light blue for icons */
+        }
+        ul {
+            list-style: none; /* Removed default list style to use custom bullets */
+            padding-left: 0;
+            columns: 2; /* Arrange content into 2 columns */
+            column-gap: 2rem; /* Add spacing between columns */
+        }
+        ul li {
+            position: relative;
+            padding-left: 1.5rem; /* Space for the custom bullet */
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            break-inside: avoid-column; /* Prevent list items from breaking across columns */
+        }
+        ul li::before {
+            content: '•'; /* Custom bullet point */
+            position: absolute;
+            left: 0; /* Position the custom bullet */
+            color: #63b3ed; /* Light blue for bullet points */
+            font-weight: bold;
+        }
+
+        /* Chart Styling */
+        .chart-container {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #cbd5e0;
+        }
+        .chart-container h3 {
+            margin-bottom: 75px; /* Set margin-bottom to 75px for title */
+        }
+        .chart-bar-wrapper {
+            display: flex;
+            align-items: flex-end;
+            /* Removed fixed height: height: 200px; */
+            gap: 4.5rem; /* Increased gap between bars */
+            justify-content: center;
+            margin-top: 0; /* Removed margin-top as spacing is now handled by h3 */
+            margin-bottom: 6rem; /* Increased space below bar graphs to clear labels */
+        }
+        .bar {
+            width: 60px; /* Increased width for bars */
+            background-color: #4299e1; /* Blue for services */
+            border-radius: 0.25rem;
+            transition: height 1s ease-out; /* Animation */
+            position: relative;
+            display: flex;
+            flex-direction: column; /* Stack value and label inside bar for small screens */
+            align-items: center;
+            justify-content: flex-end; /* Align value to bottom of bar */
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem; /* text-sm */
+            flex-shrink: 0; /* Prevent bars from shrinking */
+            padding-bottom: 0.5rem; /* Padding for value inside bar */
+        }
+        .bar.improvements {
+            background-color: #fdba74; /* Light orange for improvements */
+        }
+        .bar.projects {
+            background-color: #38b2ac; /* Teal for projects */
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -82px; /* Label below bar, 25px more space than before (-57px - 25px = -82px) */
+            font-size: 0.875rem; /* Increased font size for labels */
+            color: #666;
+            text-align: center;
+            width: 100%;
+        }
+        .bar-value {
+            position: absolute;
+            top: -1.5rem; /* Value above bar, increased space */
+            font-size: 1rem; /* Increased font size for values */
+            font-weight: 700; /* Bolder font for values */
+            color: #333;
+        }
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 4rem; /* Increased margin-top for more space below bars */
+            font-size: 0.875rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        .legend-color {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .section-title {
+                font-size: 1.75rem;
+            }
+            .year-header {
+                font-size: 1.5rem;
+            }
+            .sub-section-title {
+                font-size: 1.125rem;
+            }
+            .chart-bar-wrapper {
+                flex-direction: column; /* Stack bars on small screens */
+                height: auto;
+                align-items: center;
+                margin-bottom: 5rem; /* Maintain spacing for stacked bars */
+            }
+            .bar {
+                width: 80%; /* Make bars wider when stacked */
+                max-width: 150px;
+                margin-bottom: 3rem; /* Space when stacking */
+                height: auto !important; /* Allow height to be determined by content if needed */
+                padding-bottom: 0;
+            }
+            .bar-value {
+                position: static; /* Position value inside bar for smaller screens */
+                color: white;
+                margin-bottom: 0.5rem;
+            }
+            .bar-label {
+                position: static; /* Position label inside bar for smaller screens */
+                color: white;
+                font-size: 0.75rem;
+            }
+            ul {
+                columns: 1; /* Switch to single column on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-8">
+        <header class="text-center mb-10">
+            <h1 class="section-title text-4xl mb-4 text-blue-800">Teksystems/One North & Stanford Health Care Web Operations Growth</h1>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                A look back at the significant growth, innovation, and strategic improvements spearheaded by the Web Production team.
+            </p>
+        </header>
+
+        <!-- Prior to 2021 Section -->
+        <div class="card">
+            <h2 class="year-header text-blue-700">Prior to 2021: The Foundation</h2>
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                </svg>
+                Established Services
+            </div>
+            <ul>
+                <li><b>Co-managed service</b></li>
+                <li>Physician onboarding (CAP)</li>
+                <li>AEM authoring (SHC.org, TV.org, SHCA.org, SHCQ.org)</li>
+                <li>Nursing department AEM authoring support</li>
+                <li>Patient Experience AEM authoring support</li>
+                <li>Quick web updates for the enterprise</li>
+                <li>Digimarketing and shcinternal request management</li>
+            </ul>
+        </div>
+
+        <!-- 2022 Section -->
+        <div class="card">
+            <h2 class="year-header text-blue-700">2022: Transition & Expansion</h2>
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zm3 4a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm-3 4a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z" />
+                </svg>
+                Managed Services Added
+            </div>
+            <ul>
+                <li><b>Transitioned from co-managed to fully managed service</b></li>
+                <li>Added pre-production request requirements and inputs validation and direct stakeholder collaboration</li>
+                <li>Added digital review and AEM feasibility analysis to free up Digital Marketing Lead time</li>
+                <li>Completed AEM cross-training to increase coverage and responsiveness</li>
+                <li>Added service line marketing liaison and escalation responsibilities</li>
+                <li>Transitioned work management from Excel to Workfront, created production reports, templates, processes, and training</li>
+                <li>Assumed responsibility for homepage authoring & publishing & cross-trained the team for full coverage</li>
+                <li>Designed/deployed protocol for assimilating new customer-requested work types</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Process Improvements Implemented
+            </div>
+            <ul>
+                <li>Reduced new author time-to-productivity</li>
+                <li>Took on Confluence documentation management</li>
+                <li>Created new MD onboarding copydeck to streamline doctor onboarding</li>
+                <li>Implemented Content Authoring Peer Review</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13zm-3 4a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13z" clip-rule="evenodd" />
+                </svg>
+                Strategic Projects Completed
+            </div>
+            <ul>
+                <li>Completed Ortho page directory redesigns using new AEM templates</li>
+                <li>Completed Clinic page redesigns using new AEM templates</li>
+                <li>Completed AEM component consolidation with TDS</li>
+            </ul>
+
+            <div class="chart-container">
+                <h3 class="text-lg font-bold text-center mb-4 text-gray-800">2021-2022 Cumulative Metrics</h3>
+                <div class="chart-bar-wrapper">
+                    <div class="bar services-bar" data-height="8">
+                        <span class="bar-value">8</span>
+                        <span class="bar-label">Services Added</span>
+                    </div>
+                    <div class="bar improvements" data-height="4">
+                        <span class="bar-value">4</span>
+                        <span class="bar-label">Process Improvements</span>
+                    </div>
+                    <div class="bar projects" data-height="3">
+                        <span class="bar-value">3</span>
+                        <span class="bar-label">Strategic Projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2023 Section -->
+        <div class="card">
+            <h2 class="year-header text-blue-700">2023: Deeper Integration & New Capabilities</h2>
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zm3 4a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm-3 4a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z" />
+                </svg>
+                Managed Services Added
+            </div>
+            <ul>
+                <li>Added Digital Marketing Lead role and responsibilities to web production workflow</li>
+                <li>Added responsibility for bug ticket investigation, submission & fix testing (JIRA)</li>
+                <li>Added multi-channel image optimization (Photoshop)</li>
+                <li>Added Email Marketing production (Marketo) – took over from CAPgemini</li>
+                <li>Added Stanford Medicine brand site content maintenance (BEAM) – took over from Monigle</li>
+                <li>Built a new School of Medicine brand site and added ongoing content maintenance</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Process Improvements Implemented
+            </div>
+            <ul>
+                <li>Completed Marketo cross training within production team</li>
+                <li>Created Marketo documentation (template design, pre-send checklist, etc.)</li>
+                <li>Created Zeroheight webpage template design documentation</li>
+                <li>Reinstated monthly webpage 404 report review & fix</li>
+                <li>Created “Known AEM Bug Database” documentation</li>
+                <li>Created AEM quick start guide documentation</li>
+                <li>Created Workfront Website Bugs & Issues queue and provided queue management</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13zm-3 4a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13z" clip-rule="evenodd" />
+                </svg>
+                Strategic Projects Completed
+            </div>
+            <ul>
+                <li>Completed Program page redesigns using new AEM templates (CVH, ENT, Ortho)</li>
+                <li>Completed Condition page redesigns using new AEM templates</li>
+                <li>Completed Campaign page builds using new AEM templates</li>
+                <li>Created the Sustainability Program Office microsite</li>
+                <li>Completed web accessibility compliance project for hyperlinks</li>
+                <li>Completed AEM Deactivated Content Archival project</li>
+            </ul>
+
+            <div class="chart-container">
+                <h3 class="text-lg font-bold text-center mb-4 text-gray-800">2021-2023 Cumulative Metrics</h3>
+                <div class="chart-bar-wrapper">
+                    <div class="bar services-bar" data-height="14">
+                        <span class="bar-value">14</span>
+                        <span class="bar-label">Services Added</span>
+                    </div>
+                    <div class="bar improvements" data-height="11">
+                        <span class="bar-value">11</span>
+                        <span class="bar-label">Process Improvements</span>
+                    </div>
+                    <div class="bar projects" data-height="9">
+                        <span class="bar-value">9</span>
+                        <span class="bar-label">Strategic Projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2024 Section -->
+        <div class="card">
+            <h2 class="year-header text-blue-700">2024: Advanced Operations & Strategic Reporting</h2>
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zm3 4a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm-3 4a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z" />
+                </svg>
+                Managed Services Added
+            </div>
+            <ul>
+                <li>Added Photos email inbox management</li>
+                <li>Added QR code generation, short URL generation, and vanity URL requests (Flowcode)</li>
+                <li>Added online presence management (Yext) – includes data analysis, Yext API integration, bulk data data upload and validation</li>
+                <li>Added website QA and accessibility updates (Siteimprove) including project design, management, execution, and impact reporting</li>
+                <li>Implemented actual hours tracking and weekly reporting to provide leadership insight into managed service cost</li>
+                <li>Added Marketo platform configuration and management – took over from CAPgemini</li>
+                <li>Added Marketo email campaign management & execution</li>
+                <li>Added Marketo email template development & maintenance – took over from CAPgemini</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Process Improvements Implemented
+            </div>
+            <ul>
+                <li>Created Digital Marketing Lead responsibilities documentation</li>
+                <li>Optimized Marketo project design in Workfront</li>
+                <li>Provided Marketo training to marketing stakeholders</li>
+                <li>Standardized doctor offboarding via project templates and documentation</li>
+                <li>Standardized clinic page deactivation via project templates and documentation</li>
+                <li>Created QA publishing standards documentation</li>
+                <li>Created and managed AEM and Marketo improvements Kanban boards</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13zm-3 4a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13z" clip-rule="evenodd" />
+                </svg>
+                Strategic Projects Completed
+            </div>
+            <ul>
+                <li>Provided rebuild content migration</li>
+                <li>Supported Yext implementation</li>
+                <li>Implemented Marketo Legal Compliance Review</li>
+                <li>Created the Marketo Subscription Center</li>
+                <li>Created Marketo Workfront project templates</li>
+                <li>Created Marketo Program Brief document</li>
+                <li>Completed Marketo person database deduplication</li>
+                <li>Developed the Marketo master email template</li>
+                <li>Provided Marketo reporting & metrics</li>
+            </ul>
+
+            <div class="chart-container">
+                <h3 class="text-lg font-bold text-center mb-4 text-gray-800">2011-2024 Cumulative Metrics</h3>
+                <div class="chart-bar-wrapper">
+                    <div class="bar services-bar" data-height="22">
+                        <span class="bar-value">22</span>
+                        <span class="bar-label">Services Added</span>
+                    </div>
+                    <div class="bar improvements" data-height="18">
+                        <span class="bar-value">18</span>
+                        <span class="bar-label">Process Improvements</span>
+                    </div>
+                    <div class="bar projects" data-height="18">
+                        <span class="bar-value">18</span>
+                        <span class="bar-label">Strategic Projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2025 Section -->
+        <div class="card">
+            <h2 class="year-header text-blue-700">2025: Strategic Growth & Future Vision (YTD)</h2>
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zm3 4a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm-3 4a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z" />
+                </svg>
+                Managed Services Added
+            </div>
+            <ul>
+                <li>Added Website Rebuild PO role and responsibilities</li>
+                <li>Added Stanford Labs site content maintenance (AEM)</li>
+                <li>Added oversight of nursing and patient experience authoring teams</li>
+                <li>Added Adobe Analytics</li>
+                <li>Potentially adding Creative Services</li>
+                <li>Assisted with Workfront Optimization planning</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Process Improvements Implemented
+            </div>
+            <ul>
+                <li>Improved collaboration between Rebuild and Production team</li>
+                <li>Optimized efficiency in Yext Online Presence Management</li>
+                <li>Created and managed Yext Listings Management Operations request queue</li>
+            </ul>
+
+            <div class="sub-section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13zm-3 4a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13z" clip-rule="evenodd" />
+                </svg>
+                Strategic Projects Completed
+            </div>
+            <ul>
+                <li>Completed Newsroom article site migration</li>
+                <li>Completed bulk update of Yext listing biographies/descriptions (~700 profiles)</li>
+                <li>Completed new Anthem contract website build with new AEM templates and components</li>
+                <li>Completed redesigns of ~30 Patients and Visitors pages with improved accessibility/UX</li>
+            </ul>
+
+            <div class="chart-container">
+                <h3 class="text-lg font-bold text-center mb-4 text-gray-800">2011-2025 Cumulative Metrics (YTD)</h3>
+                <div class="chart-bar-wrapper">
+                    <div class="bar services-bar" data-height="28">
+                        <span class="bar-value">28</span>
+                        <span class="bar-label">Services Added</span>
+                    </div>
+                    <div class="bar improvements" data-height="21">
+                        <span class="bar-value">21</span>
+                        <span class="bar-label">Process Improvements</span>
+                    </div>
+                    <div class="bar projects" data-height="22">
+                        <span class="bar-value">22</span>
+                        <span class="bar-label">Strategic Projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center mt-10 text-gray-600">
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <div class="legend-color bg-blue-500"></div>
+                    <span>Managed Services Added</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #fdba74;"></div>
+                    <span>Process Improvements Implemented</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color bg-teal-500"></div>
+                    <span>Strategic Projects Completed</span>
+                </div>
+            </div>
+            <p class="mt-4 text-lg font-medium">
+                This infographic demonstrates a clear trajectory of growth, efficiency, and expanded strategic value.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Animate bars on load
+        window.onload = function() {
+            const bars = document.querySelectorAll('.bar');
+            const maxVal = Math.max(...Array.from(bars).map(bar => parseInt(bar.dataset.height)));
+            const scaleFactor = 150 / maxVal; // Max height for bars is 150px, adjusted for better scaling
+
+            bars.forEach(bar => {
+                const height = parseInt(bar.dataset.height);
+                // Apply a minimum height to prevent bars from disappearing or being too small
+                bar.style.height = `${Math.max(20, height * scaleFactor)}px`;
+            });
+        };
+    </script>
+</body>
+</html>
